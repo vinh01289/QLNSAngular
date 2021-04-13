@@ -1,0 +1,22 @@
+.img-head{
+    width: 100px;
+    padding-top: 10px;
+}
+.mat-main mat-card {
+    padding: 0px;
+    margin-top: 100px;
+    margin-bottom:600px ;
+}
+.login-form {
+    padding: 20px;
+}
+body {
+    background: url();
+}
+
+h1 {
+    text-align: center;
+}
+mat-checkbox {
+    padding-bottom: 10px;
+}

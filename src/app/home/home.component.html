@@ -1,0 +1,143 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="256px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://tpos.vn/" target="_blank">
+        <img src="https://cdn.timviecnhanh.com/asset/home/img/employer/56c681e3681c9_1455849955.png" alt="logo">
+        <h1>Hello, {{username}}</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Menu" nzIcon="dashboard">
+        <!-- <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/employees">Employee</a>
+          </li>
+          
+        </ul> -->
+      </li>
+      <li nz-submenu nzOpen nzTitle="Department" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/home/Department">Department</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Birthday" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/home/Birthday">BirthDay</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Request Approval" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/home/RequestApproval">Request Approval</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Profile" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/home/ChangePW">Change Password</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Log Out" (click)="loadTwo()" nzIcon="poweroff">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a nz-button nzType="primary" (click)="loadTwo()">Log Out</a>
+          </li>
+
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <i class="trigger"
+               nz-icon
+            ></i>
+        </span>
+          <nz-badge class="nzbNoti" [nzCount]="count" *ngIf="isRole">
+            <a (click)="showModal()" nz-popconfirm title="Request Approval"  nzTitle="Modal Title" (nzOnCancel)="handleCancel()">
+                <i style="padding-right: 10px;height: 20px;" nz-icon nzType="bell" nzTheme="outline"></i></a>
+          </nz-badge>
+        
+          <nz-badge class="nzbNoti" [nzCount]="countBirthDay" *ngIf="isRole" style="margin-left: 20px;">
+            <a (click)="showModalBirthDay()" nz-popconfirm title="Birth Day"  nzTitle="Modal Title" (nzOnCancel)="handleCancel()">
+                <i style="padding-right: 10px;height: 20px;" nz-icon nzType="gift" nzTheme="outline"></i></a>
+          </nz-badge>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet (activate)="onActivate($event)"></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+
+<nz-modal
+[(nzVisible)]="isVisible"
+nzTitle="Notifice"
+nzClassName= "modalNotifice"
+(nzOnCancel)="handleCancel()"
+[nzOkLoading]="isOkLoading"
+>
+<nz-table #rowSelectionTable [nzData]="listNoti">
+  <thead>
+      <tr>
+          <th>Title</th>
+          <th>Link</th>
+          <th>Action</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let data of rowSelectionTable.data">
+          <td>{{data.title}}</td>
+          <td><a href="http://localhost:4200/home/RequestApproval">{{data.linkRelated}}</a></td>
+          
+      </tr>
+      
+  </tbody>
+</nz-table>
+</nz-modal>
+
+
+
+  <nz-modal
+  [(nzVisible)]="isShowBirthDay"
+  nzTitle="Birthday notice"
+  nzClassName= "modalBirthday"
+  (nzOnCancel)="handleBirthDayCancel()"
+  [nzOkLoading]="isOkLoading"
+  >
+    <nz-table #birthDay [nzData]="listBirthDayNoti">
+      <thead>
+          <tr>
+              <th>Employee Id</th>
+              <th>Full Name</th>
+              <th>Data of Birth</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let data of birthDay.data">
+              <td>{{data.employeeId}}</td>
+              <td>{{data.fullName}}</td>
+              <td>{{data.dateOfBirth | date: 'dd/MM/yyyy' }}</td>
+          </tr>
+          
+      </tbody>
+    </nz-table>
+  </nz-modal>
+

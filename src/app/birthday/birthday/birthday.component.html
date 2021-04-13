@@ -1,0 +1,105 @@
+<h1 style="font-weight: bold; text-align: center;">BirthDay Managerment</h1>
+<h3 style="font-weight: bold;">Number of employees with current day's birthday ({{today}}) : {{countBirthDay}}</h3>
+<nz-table #birthDay [nzData]="listBirthDayNoti">
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Full Name</th>
+            <th>Date of Birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of birthDay.data">
+            <td>{{data.employeeId}}</td>
+            <td>{{data.fullName}}</td>
+            <td>{{data.dateOfBirth | date: 'dd/MM/yyyy' }}</td>
+        </tr>
+        
+    </tbody>
+  </nz-table>
+
+<h3 style="font-weight: bold;">Number of employees with current month's birthday ({{mm}}) : {{countMonth}}</h3>
+<!-- <nz-table #birthDayMonth [nzData]="listBirthDayMonth">
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Full Name</th>
+            <th>Date of Birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of birthDayMonth.data">
+            <td>{{data.employeeId}}</td>
+            <td>{{data.fullName}}</td>
+            <td>{{data.dateOfBirth | date: 'dd/MM/yyyy' }}</td>
+        </tr>
+        
+    </tbody>
+  </nz-table> -->
+
+  <div nz-row>
+    <div nz-col nzSpan="12">
+        <form nz-form [formGroup]="monthForm" (ngSubmit)="submitForm()">
+    
+            <nz-form-item>
+                <nz-form-label [nzSm]="9" [nzXs]="24" nzFor="typeoftime">List of employees with birthdays in the month </nz-form-label>
+                <nz-form-control [nzSm]="7" [nzXs]="24" >
+                  <nz-select formControlName="month" ngModel="1">
+                    <nz-option nzValue="1" nzLabel="1 - January">
+                    </nz-option>
+                    <nz-option nzValue="2" nzLabel="2- February">
+                    </nz-option>
+                    <nz-option nzValue="3" nzLabel="3 - March">
+                    </nz-option>
+                    <nz-option nzValue="4" nzLabel="4- April">
+                    </nz-option>
+                    <nz-option nzValue="5" nzLabel="5 - May">
+                    </nz-option>
+                    <nz-option nzValue="6" nzLabel="6- June">
+                    </nz-option>
+                    <nz-option nzValue="7" nzLabel="7 - July">
+                    </nz-option>
+                    <nz-option nzValue="8" nzLabel="8- August">
+                    </nz-option>
+                    <nz-option nzValue="9" nzLabel="9 - September">
+                    </nz-option>
+                    <nz-option nzValue="10" nzLabel="10 - October">
+                    </nz-option>
+                    <nz-option nzValue="11" nzLabel="11 - November">
+                    </nz-option>
+                    <nz-option nzValue="12" nzLabel="12- December">
+                    </nz-option>
+                  </nz-select>
+                </nz-form-control>
+                <button nz-button nzType="primary" type="submit" style="margin-left: 10px;">Ok</button>
+              </nz-form-item>
+        
+           
+          </form>
+    </div>
+    <div nz-col nzSpan="12"></div>
+  </div>
+
+
+
+
+  
+  <nz-table #birthMonth [nzData]="listMonth">
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Full Name</th>
+            <th>Date of Birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of birthMonth.data">
+            <td>{{data.employeeId}}</td>
+            <td>{{data.fullName}}</td>
+            <td>{{data.dateOfBirth | date: 'dd/MM/yyyy' }}</td>
+        </tr>
+        
+    </tbody>
+  </nz-table>
+
+

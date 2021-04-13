@@ -1,0 +1,23 @@
+
+<div fxLayoutAlign="center center" class="mat-main">
+    
+    <mat-card fxFlex="20" fxFlex.md="25" fxFlex.sm="25" fxFlex.xs="calc(75%-50px)" class="card-mat">
+        <div fxLayoutAlign="center center">
+            <img src="https://i.imgur.com/LeZJcYm.jpg" alt="tmt" class="img-head">
+        </div>
+        <h1 class="title">Đăng nhập</h1>
+        <form fxLayoutAlign="stretch" fxLayout="column" class="login-form" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+            <mat-form-field class="email">
+              <input matInput type ="text" placeholder="Email" nz-input formControlName="email"  >
+            </mat-form-field>
+          
+            <mat-form-field class="password" nzErrorTip="Please input your Password!">
+                <input matInput type="password" placeholder="Password" nz-input formControlName="password" value="" >
+            </mat-form-field>
+            <section>
+                <mat-checkbox color="primary" >Ghi nhớ !</mat-checkbox>
+            </section>
+            <button mat-raised-button mat-button type="submit" >Login</button>
+        </form>
+    </mat-card>
+</div>
